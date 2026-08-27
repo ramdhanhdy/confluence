@@ -1,0 +1,60 @@
+{
+ "run_id": "20260827",
+ "stages": {
+  "stage1_raw": {
+   "outputs": {
+    "raw_signals": 182,
+    "sources": [
+     "freelancer",
+     "upwork"
+    ]
+   },
+   "note": "migrated from workspace flat JSON"
+  },
+  "stage2_distill": {
+   "inputs": {
+    "raw_signals": 182
+   },
+   "outputs": {
+    "clean": 171,
+    "viable": 171,
+    "rejected": 11,
+    "signals": 10
+   },
+   "summary": {
+    "raw": 182,
+    "clean": 171,
+    "viable": 171,
+    "rejected": 11,
+    "rejection_reasons": {
+     "entry_level": 4,
+     "micro_budget": 7,
+     "title_junk": 2
+    },
+    "lane_counts": {
+     "llm-eval": 8,
+     "python-automation": 65,
+     "ds-classic": 23,
+     "web-build": 109,
+     "agent": 11
+    },
+    "signals": 10
+   },
+   "seconds": 0.03,
+   "at": "2026-08-27T18:36:37+0700"
+  },
+  "stage3_match": {
+   "inputs": {
+    "signals": 10,
+    "snapshot_repos": 39
+   },
+   "outputs": {
+    "matches": 10,
+    "partial": 7,
+    "match": 3
+   },
+   "seconds": 0.05,
+   "at": "2026-08-27T18:36:37+0700"
+  }
+ }
+}

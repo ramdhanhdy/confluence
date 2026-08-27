@@ -1,0 +1,224 @@
+{
+ "signals": [
+  {
+   "signal_id": "web-build:general",
+   "lane": "web-build",
+   "keyphrase": "general",
+   "count": 38,
+   "posting_ids": [
+    "022092562129367143780",
+    "022092559111236781038",
+    "022091972070389092135",
+    "022092060375965115008",
+    "022092105726764586340",
+    "022092278507414800058",
+    "ios-development-ios-app-developer-for-outfit",
+    "customer-service-dental-clinic-virtual-receptionist",
+    "machine-learning-gpu-infrastructure-specialist-required",
+    "statistics-research-collaborator-needed-40673108",
+    "deep-learning-realistic-handwriting-pdf-studio",
+    "data-science-numerical-data-classification-model-40672036",
+    "statistics-research-collaborator-needed-40671582",
+    "computer-vision-object-detection-model-for-disease",
+    "natural-language-processing-text-model-training-optimization",
+    "ai-model-development-market-trend-predictor",
+    "machine-learning-powered-fraud-detection-system-prototype",
+    "machine-learning-project-egocentric-pov-video-data",
+    "big-data-algorithmes-avanc-maths",
+    "data-analysis-comparative-equity-growth-modeling",
+    "fintech-fintech-trainers-needed-mohali",
+    "react-js-debugging-based-web-application",
+    "flutter-personal-finance-financial-forecasting",
+    "python-senior-technical-developer",
+    "network-administration-cyberark-epm-implementation-integration",
+    "splunk-web-app-monitoring-with-splunk",
+    "analog-electronics-guidance-for-analog-sensor-prototype",
+    "ai-content-creation-tech-content-suite-creation",
+    "frontend-development-refine-rtmp-srt-udp",
+    "api-whatsapp-bulk-marketing-sender-tool",
+    "css-woocommerce-digital-products-webshop",
+    "react-native-cross-platform-auto-booking-system",
+    "three-js-reactive-origami-simulation-platform",
+    "ai-hw-sw-driven-shopify-seo-implementation",
+    "android-app-development-shopify-webview-android-app",
+    "woocommerce-build-wordpress-commerce-store-40672151",
+    "web-design-wordpress-lead-generation-landing-page",
+    "frontend-development-improve-rtmp-srt-udp-interface"
+   ]
+  },
+  {
+   "signal_id": "python-automation:general",
+   "lane": "python-automation",
+   "keyphrase": "general",
+   "count": 36,
+   "posting_ids": [
+    "022092548487355635044",
+    "022092061679384053434",
+    "022092071202045985774",
+    "022092083740116719251",
+    "022092565500187166394",
+    "022092260669907604836",
+    "022092143545653073555",
+    "022092191526779557523",
+    "artificial-intelligence-animator-for-children-youtube-series",
+    "natural-language-processing-engineer-for-medical-data-extraction",
+    "cloud-computing-deploy-healthcare-huawei-cloud",
+    "robotics-vla-manipulator-project",
+    "ai-development-photo-editor",
+    "ai-development-photo-editor-development",
+    "shopify-site-shopify-odoo-multichannel-integration",
+    "python-whatsapp-message-parser",
+    "beautifulsoup-automated-supplier-price-scraper",
+    "web-development-build-project-ivy-web-apps",
+    "devops-nginx-pro-for-ddos-protection",
+    "beautifulsoup-university-program-data-scraper",
+    "selenium-python-commerce-alert-script",
+    "web-development-workout-coach-app-web",
+    "selenium-keeta-app-menu-scraper",
+    "python-integration-for-sql-erp",
+    "api-developmet-azure-python-api-backend",
+    "zendesk-zendesk-optimization-for-streamlined",
+    "web-development-upgrade-php-web-app",
+    "web-development-modern-responsive-commerce-website-40673223",
+    "web-development-web-developer-needed-40672827",
+    "google-ads-fix-non-showing-google",
+    "xenforo-wordpress-xenforo-auto-scraper",
+    "saas-development-saas-mvp-cost-timeline-estimate",
+    "javascript-loocking-for-javascript-canvas-webgl",
+    "web-development-auto-repair-used-car-sales",
+    "google-ads-mobile-firebase-ads-integration",
+    "web-development-modern-responsive-website-development-40671783"
+   ]
+  },
+  {
+   "signal_id": "web-build:website",
+   "lane": "web-build",
+   "keyphrase": "website",
+   "count": 28,
+   "posting_ids": [
+    "022092560050573053735",
+    "022092563907769226873",
+    "022092565337742263673",
+    "022092571437501208185",
+    "022092564042337387502",
+    "022092571377362308903",
+    "022092573837293307578",
+    "google-tag-management-optimize-salon-google-profile-seo",
+    "data-entry-extract-parts-pricing-data",
+    "full-stack-development-dpo-dpco-management-platform-development",
+    "natural-language-processing-reference-data-reporter",
+    "full-stack-development-full-stack-commerce-site-creation",
+    "web-development-modern-family-dynasty-website",
+    "web-development-corporate-wordpress-site-development-40673235",
+    "web-development-wordpress-site-modification-enhancement",
+    "nextjs-streaming-website-development",
+    "website-design-web-developer-for-complete-service",
+    "web-development-complete-website-development-needed-40672893",
+    "web-design-modern-multi-page-website-design",
+    "web-development-resort-booking-commerce-website-design",
+    "web-development-responsive-tour-booking-website",
+    "frontend-development-virtual-frontend-backend-office-founder",
+    "web-design-minimalist-service-showcase-website-40672184",
+    "payment-gateway-integration-razorpay-payment-gateway-integration-40672137",
+    "webrtc-add-booking-based-chat-call",
+    "web-development-elegant-press-nails-commerce-site",
+    "graphic-design-classic-portfolio-website-build-edt",
+    "web-design-vibrant-portfolio-website-build"
+   ]
+  },
+  {
+   "signal_id": "agent:agent",
+   "lane": "agent",
+   "keyphrase": "agent",
+   "count": 9,
+   "posting_ids": [
+    "022092034767559869817",
+    "022092226852956870291",
+    "022092174626138497664",
+    "https://www.freelancer.com/projects/prospecting-expert-for-company-fix",
+    "machine-learning-powered-construction-planning-engineer",
+    "data-analysis-siermet-descriptive-data-analysis-agent",
+    "agentic-ai-agentic-developer-voice-chat-automation",
+    "ai-video-editing-script-video-agent-using-api",
+    "ai-agent-swarms-expert-engineer-cursor-claude-grok"
+   ]
+  },
+  {
+   "signal_id": "python-automation:pipeline",
+   "lane": "python-automation",
+   "keyphrase": "pipeline",
+   "count": 9,
+   "posting_ids": [
+    "python-advanced-audio-mir-pipeline-for",
+    "machine-learning-chemical-plant-identifier-assistant",
+    "ai-model-development-model-accuracy-troubleshooting",
+    "ai-model-development-llm-fine-tuning-rag-pipeline",
+    "data-science-data-preprocessing-model-development",
+    "aws-sagemaker-aws-sagemaker-algorithm-accuracy",
+    "machine-learning-custom-tensorflow-classification-model",
+    "cuda-accelerate-rollcall-pipeline",
+    "big-data-sales-financial-data-processing"
+   ]
+  },
+  {
+   "signal_id": "python-automation:automation",
+   "lane": "python-automation",
+   "keyphrase": "automation",
+   "count": 8,
+   "posting_ids": [
+    "022092545098505307834",
+    "022092277057863828857",
+    "machine-learning-object-detection-automation",
+    "python-finalization-refactoring-validation",
+    "ai-automation-automation-engineer-full-time",
+    "selenium-web-portal-session-automation",
+    "bot-development-commerce-voting-bot-integration",
+    "android-app-development-mobile-video-view-automation"
+   ]
+  },
+  {
+   "signal_id": "ds-classic:general",
+   "lane": "ds-classic",
+   "keyphrase": "general",
+   "count": 3,
+   "posting_ids": [
+    "022092277338558649977",
+    "data-science-predictive-modelling-for-classification",
+    "api-developmet-voice-controlled-operations-assistant"
+   ]
+  },
+  {
+   "signal_id": "llm-eval:evaluation",
+   "lane": "llm-eval",
+   "keyphrase": "evaluation",
+   "count": 3,
+   "posting_ids": [
+    "022092084642333205120",
+    "data-science-data-evaluation-benchmark-modeling",
+    "api-developmet-job-platform-referral-tracking"
+   ]
+  },
+  {
+   "signal_id": "llm-eval:general",
+   "lane": "llm-eval",
+   "keyphrase": "general",
+   "count": 3,
+   "posting_ids": [
+    "agronomy-japan-agricultural-field-research",
+    "data-analysis-customer-review-data-analysis",
+    "minecraft-minecraft-smp-mod-development"
+   ]
+  },
+  {
+   "signal_id": "python-automation:scraping",
+   "lane": "python-automation",
+   "keyphrase": "scraping",
+   "count": 2,
+   "posting_ids": [
+    "022092269433129866596",
+    "beautifulsoup-automated-website-scraping-solution-40672743"
+   ]
+  }
+ ],
+ "singletons": 5
+}

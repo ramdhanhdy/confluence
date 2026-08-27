@@ -1,0 +1,23 @@
+{
+ "run": "20260827",
+ "gold_records": 4,
+ "at": "2026-08-27T18:36:37+0700",
+ "lanes": {
+  "per_lane": {},
+  "micro": {
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 0
+  }
+ },
+ "rejections": {
+  "gold_count": 4,
+  "correct": 4,
+  "accuracy": 1.0,
+  "false_rejects": [],
+  "false_accepts": []
+ }
+}

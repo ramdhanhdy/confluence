@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Large/ephemeral artifacts (keep JSONL history small; reports are the artifacts)
+*.db-journal
+*.db-wal
+*.db-shm

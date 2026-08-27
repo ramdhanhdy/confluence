@@ -1,0 +1,19 @@
+{
+ "raw": 182,
+ "clean": 171,
+ "viable": 171,
+ "rejected": 11,
+ "rejection_reasons": {
+  "entry_level": 4,
+  "micro_budget": 7,
+  "title_junk": 2
+ },
+ "lane_counts": {
+  "llm-eval": 8,
+  "python-automation": 65,
+  "ds-classic": 23,
+  "web-build": 109,
+  "agent": 11
+ },
+ "signals": 10
+}
