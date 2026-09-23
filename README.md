@@ -1,96 +1,84 @@
 # Confluence
 
-Demand↔inventory confluence for the freelance pipeline — built for
-**evaluations-based development**: every stage writes inspectable,
-line-oriented artifacts, every decision carries a reason, and a gold-set
-eval loop scores each pipeline change.
+Match freelance demand to the projects you already have.
 
-## Layout
+It reads public job posts, drops the ones that do not fit, groups what is left, and compares those groups to your repository list. Every step writes a file you can open. A small set of hand labels tells you whether a rule change helped.
 
-```
-E:\confluence\
-├── pipeline\               # stage code (pure, re-runnable)
-│   ├── scout.py            # stage 1 — extract (runs via Hermes browser_exec)
-│   ├── distill.py          # stage 2 — clean / filter / lane-tag / cluster
-│   ├── match.py            # stage 3 — demand ↔ GitHub inventory
-│   ├── run_evals.py        # score a run against gold labels
-│   ├── label.py            # label postings into the gold set
-│   └── lib\io.py           # JSONL IO + per-run manifest helpers
-├── runs\<run_id>\          # one dir per scout run (run_id = YYYYMMDD)
-│   ├── manifest.json       # stage funnel: inputs/outputs/seconds per stage
-│   ├── stage1_raw\raw_signals.jsonl
-│   ├── stage2_distill\clean.jsonl viable.jsonl rejected.jsonl signals.json summary.json
-│   └── stage3_match\matches.jsonl
-├── state\                  # persistent cross-run state
-│   └── github_snapshot.jsonl
-└── evals\
-    ├── gold\gold_labels.jsonl      # hand-labeled postings (the ground truth)
-    └── reports\eval_<run_id>.json  # lane P/R/F1 + rejection accuracy
-```
+![How Confluence works](docs/architecture.png)
 
-Human-facing output goes to the Obsidian vault:
-`E:\2026\vault\freelance\confluence\daily-brief-<date>.md`
+The same picture, open in a browser: [docs/architecture.html](docs/architecture.html)
 
-## Data funnel (raw → processed)
+## The four steps
 
-```
-raw_signals.jsonl          182   one JSON per line: id, source, category, title, url, text
-  → clean.jsonl            171   junk titles dropped
-  → viable.jsonl           171   + lanes[], lane_evidence{}, budget_usd
-  → rejected.jsonl          11   + rejection_reasons[] (entry_level | geo_locked | micro_budget)
-  → signals.json            10   demand clusters: lane:keyphrase, count, posting_ids[]
-  → matches.jsonl           10   verdict match|partial|gap + candidate_repos + evidence_terms
-```
+1. **Scout** reads public job cards and writes one line per posting.
+2. **Distill** drops junk, entry-level, location-locked, and tiny-budget posts. It tags the rest by kind of work.
+3. **Match** compares each demand group to your project list and marks it `match`, `partial`, or `gap`.
+4. **Eval** scores that run against hand labels. Do not edit the labels to make the score look better.
 
-Every record keeps its `id` end-to-end, so you can trace any posting from
-raw scrape to final verdict:
+Steps 2–4 are plain Python. You can re-run them on any saved run. Step 1 needs a browser. The extract recipe is in `pipeline/scout.py`. Running that file alone only checks that the raw file is already there.
+
+## Try the sample run
 
 ```bash
-grep '"022092512733564835172"' E:\confluence\runs\20260827\stage2_distill\rejected.jsonl
+python pipeline/distill.py --run runs/20260827
+python pipeline/match.py --run runs/20260827 --snapshot state/github_snapshot.jsonl
+python pipeline/run_evals.py --run runs/20260827
 ```
 
-## Analyzing the datasets
+That sample is one day, not a benchmark:
 
-All stage files are JSONL — one JSON object per line. Friendly to grep,
-pandas, jq, or just opening in an editor:
+```text
+raw posts        182
+kept             171
+dropped           11
+demand groups     10
+match rows        10
+```
+
+Dropped posts keep a reason: `entry_level`, `geo_locked`, `micro_budget`, or `title_junk`.
+
+## Look at one posting
+
+Every record keeps the same `id` from the first file to the last.
 
 ```python
 import pandas as pd
-v = pd.read_json(r"E:\confluence\runs\20260827\stage2_distill\viable.jsonl", lines=True)
-v["lanes"].explode().value_counts()          # lane demand
-r = pd.read_json(r"...\rejected.jsonl", lines=True)
-r["rejection_reasons"].explode().value_counts()  # why things get cut
+
+kept = pd.read_json("runs/20260827/stage2_distill/viable.jsonl", lines=True)
+kept["lanes"].explode().value_counts()
+
+dropped = pd.read_json("runs/20260827/stage2_distill/rejected.jsonl", lines=True)
+dropped["rejection_reasons"].explode().value_counts()
 ```
 
-`manifest.json` in each run records the funnel counts + timing per stage,
-so week-over-week regressions (e.g. scout starts returning junk) show up
-as count anomalies, not silent bad briefs.
+`runs/<id>/manifest.json` records how many records each step read and wrote, and how long it took.
 
-## The eval loop
+## Add labels
 
-1. Read unlabeled postings: `python pipeline\label.py --run runs\<id> --sample 10`
-2. Label them: `python pipeline\label.py --id <id> --outcome viable --lanes python-automation`
-   (or `--outcome rejected --reasons entry_level`)
-3. After any pipeline change: `python pipeline\run_evals.py --run runs\<id>`
-4. Compare `evals\reports\eval_<id>.json` — lane precision/recall/F1 and
-   rejection accuracy tell you whether the change helped.
+```bash
+python pipeline/label.py --run runs/<id> --sample 10
+python pipeline/label.py --id <id> --outcome viable --lanes python-automation
+python pipeline/label.py --id <id> --outcome rejected --reasons entry_level
+python pipeline/run_evals.py --run runs/<id>
+```
 
-Gold labels are append-only truth; never rewrite them to match the code.
-If the eval disagrees with the label, re-check the posting first.
+Gold labels are append-only. If the report disagrees with a label, check the posting before changing the rule.
 
-## Known eval finding (2026-08-27)
+One real miss this caught: Upwork prints experience as `Entry | Experience level`, not `entry-level`. The first filter pass missed those cards. The gold set now pins those cases so the miss comes back if the rule breaks.
 
-Upwork cards render experience as `Entry | Experience level` (not
-"entry-level") — the first distill pass missed 4 of them. Fixed in
-`LEVEL_RE`; gold set pins the 4 cases so a regression re-surfaces.
+## Layout
 
-## Operations
+```text
+pipeline/          scout, distill, match, label, eval
+runs/<id>/         one folder per collect
+state/             the project list used by match
+evals/gold/        hand labels
+evals/reports/     scores for each run
+docs/              architecture picture
+```
 
-- Daily cron `confluence-daily-scout` (07:00 WIB) runs stage 1 via
-  browser_exec, then stages 2–3 + evals via terminal, writes the vault
-  brief, and delivers a Telegram summary.
-- Stage 1 is the only stage needing the browser harness; stages 2–3 and
-  evals are pure local Python (fast, deterministic, re-runnable on any
-  past run).
-- `state/github_snapshot.jsonl` is refreshed when the inventory changes
-  (new repos / descriptions).
+## What this is not
+
+- Not a language model. Filtering and tagging are keyword rules.
+- Not semantic search. Match uses a hand-written lane list for repositories. The snapshot file is loaded, but a repo description alone does not assign the lane.
+- Not a quality score you can quote yet. The included eval has four rejection labels and no lane labels. A perfect rejection score on four rows is not a general result.
